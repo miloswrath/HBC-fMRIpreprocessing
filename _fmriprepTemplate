@@ -10,9 +10,12 @@ OMP_NUM_THREADS=8
 
 
 #Set up dependencies
-singularityDir=/Shared/boeslab/Software/singularityFiles
+singularityDir={directory of the singularity files}
 
-export TEMPLATEFLOW_HOME=/Shared/boeslab/Software/singularityFiles/TemplateFlow
+# directory of the template files on the server
+export TEMPLATEFLOW_HOME={Server directory of the templateflow files}
+
+# directory of the template files in the container
 export SINGULARITYENV_TEMPLATEFLOW_HOME=/templateflow
 
 ##########
@@ -20,7 +23,6 @@ export SINGULARITYENV_TEMPLATEFLOW_HOME=/templateflow
 #Run fmriprep
 singularity run --cleanenv \
 -B /Users/USER/work:/work \
--B ${TEMPLATEFLOW_HOME:-$HOME/.cache/templateflow}:/templateflow \
 ${singularityDir}/fmriprep.sif \
 INDIR/ DERIVDIR/ participant --participant-label SUBJECT \
 --skip_bids_validation \
@@ -41,7 +43,7 @@ INDIR/ DERIVDIR/ participant --participant-label SUBJECT \
 --skull-strip-template OASIS30ANTs \
 --skull-strip-fixed-seed \
 --skull-strip-t1w force \
---fs-license-file /Shared/boeslab/Software/singularityFiles/freesurferLicense/license.txt \
+--fs-license-file {{Directory of the license file in shared server}} \
 --cifti-output 91k \
 --output-layout bids \
 --resource-monitor \

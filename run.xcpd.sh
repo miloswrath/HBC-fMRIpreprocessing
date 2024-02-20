@@ -42,6 +42,7 @@ do
       session=$OPTARG
       ;;
     ?)
+      echo "ERROR: Invalid subject or session identifier! Please retry the command."
       printCommandLine
       ;;
      esac

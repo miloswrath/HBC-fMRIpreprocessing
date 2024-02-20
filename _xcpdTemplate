@@ -10,12 +10,12 @@ OMP_NUM_THREADS=8
 
 
 #Set up dependencies
-singularityDir=/Shared/boeslab/Software/singularityFiles
+singularityDir={directory of the singularity files}
 
-scriptDir=/Shared/boeslab/Projects/ECoG_TMS/code
+scriptDir={code directory in shared server}
 source ${scriptDir}/sourcePack.sh
 
-xcpDir=/Shared/boeslab/Projects/ECoG_TMS/derivatives/xcp_d/sub-SUBJECT/ses-SESSION
+xcpDir={derivatives directory}xcp_d/sub-SUBJECT/ses-SESSION
 
 ##########
 
@@ -27,7 +27,7 @@ PREPDIR XCPDIR participant --participant-label SUBJECT \
 --input-type fmriprep \
 --smoothing 6 \
 -p 36P \
---dummy-scans auto \
+--dummy-scans 5 \
 --lower-bpf 0.008 \
 --upper-bpf 0.08 \
 -f 0.5 \
@@ -35,24 +35,5 @@ PREPDIR XCPDIR participant --participant-label SUBJECT \
 --resource-monitor
 
 
-#HeuDiConv converts data to RPI
-#fmriPrep flips data to LPI
-#xcp-d keeps data flipped to LPI
 
-#Reorient all xcp-d output to RPI
-  #anat
-pushd ${xcpDir}/anat > /dev/null
-for infile in `ls -1tv *nii.gz`;
-  do
-  ${scriptDir}/rpiOrient.sh -i ${xcpDir}/anat/${infile}
-done
-popd > /dev/null
-
-  #func
-pushd ${xcpDir}/func > /dev/null
-for infile in `ls -1tv *nii.gz`;
-  do
-  ${scriptDir}/rpiOrient.sh -i ${xcpDir}/func/${infile}
-done
-popd > /dev/null
 
