@@ -8,7 +8,7 @@
 #Assumptions:
 #
 #  1) Heudiconv has already been run
-
+  #Modified by Zak Gilliam (zjgilliam@uiowa.edu)
   #By Joel Bruss (joel-bruss@uiowa.edu), 1/2023
 
 ##############################
