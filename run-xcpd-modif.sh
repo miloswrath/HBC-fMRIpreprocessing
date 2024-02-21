@@ -15,7 +15,7 @@
   #this modification includes the ability to run multiple subjects at once, 
 ##############################
 
-templateDir={directory of the template file}
+templateDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/{path to xcp-d templates]}
 
 function printCommandLine {
   echo ""

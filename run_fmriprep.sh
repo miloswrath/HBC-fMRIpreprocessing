@@ -13,7 +13,7 @@
 
 ##############################
 
-templateDir={directory of the template file}
+templateDir= /Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/fmriprep_v23.2.0/job_scripts/
 
 
 function printCommandLine {
@@ -46,7 +46,7 @@ done
 
 
   #Base output directory
-baseDir= {directory of output}
+baseDir= /Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/
 
   #logdir and raw NIfTI dir
 logDir=${baseDir}/logs/sub-${subject}
@@ -68,7 +68,7 @@ if [[ ! -d ${inDir}/sub-${subject} ]]; then
 fi
 
   #Output Directory
-derivDir=${baseDir}/derivatives/fmriprep
+derivDir=${baseDir}/derivatives/fmriprep_v23.2.0
 
   #Determining User
 usr=`whoami`

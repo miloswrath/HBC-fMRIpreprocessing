@@ -14,7 +14,7 @@
 
 ##############################
 
-templateDir={directory of the template file}
+templateDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/{path to XCP-D code}
 
 
 function printCommandLine {
@@ -51,7 +51,7 @@ done
 
 
   #Base output directory
-baseDir={directory of output}
+baseDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/
 
   #logdir and raw NIfTI dir
 logDir=${baseDir}/logs/sub-${subject}

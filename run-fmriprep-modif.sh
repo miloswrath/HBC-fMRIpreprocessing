@@ -12,7 +12,7 @@
 
 ##############################
 
-templateDir={directory of the template file}
+templateDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/fmriprep_v23.2.0/job_scripts/
 
 function printCommandLine {
     echo ""
@@ -68,7 +68,7 @@ do
     fi
 
     #Output Directory
-    derivDir=${baseDir}/derivatives/fmriprep
+derivDir=${baseDir}/derivatives/fmriprep_v23.2.0
 
     #Determining User
     usr=`whoami`
