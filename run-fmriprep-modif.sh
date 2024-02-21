@@ -3,16 +3,12 @@
 ##############################
 
 #A template to run fmriprep (v21.0.0) against datasets extracted from heudiconv
-
-#Assumptions:
-#
-#  1) Heudiconv has already been run
     #Modified by Zak Gilliam (zjgilliam@uiowa.edu)
     #By Joel Bruss (joel-bruss@uiowa.edu), 1/2023
 
 ##############################
 
-templateDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/fmriprep_v23.2.0/job_scripts/
+templateDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/code/derivatives/code/fmriprep_v23.2.0/job_scripts/
 
 function printCommandLine {
     echo ""
@@ -46,14 +42,14 @@ IFS=' ' read -r -a subjectArray <<< "$subjects"
 for subject in "${subjectArray[@]}"
 do
     #Base output directory
-    baseDir={directory of output}
+    baseDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives
 
     #logdir and raw NIfTI dir
     logDir=${baseDir}/logs/sub-${subject}
     if [[ ! -d ${logDir} ]]; then
         mkdir ${logDir}
     fi
-    inDir=${baseDir}/rawdata
+    inDir=${baseDir}
 
     #Jobs directory
     jobDir=${baseDir}/jobs/sub-${subject}
@@ -68,7 +64,7 @@ do
     fi
 
     #Output Directory
-derivDir=${baseDir}/derivatives/fmriprep_v23.2.0
+derivDir=${baseDir}/derivatives/fmriprep_v23.2.0/out
 
     #Determining User
     usr=`whoami`
