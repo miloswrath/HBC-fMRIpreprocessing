@@ -23,17 +23,16 @@ export SINGULARITYENV_TEMPLATEFLOW_HOME=/templateflow
 #Run fmriprep
 singularity run --cleanenv \
 -B /Users/USER/work:/work \
-${singularityDir}/fmriprep.sif \
-INDIR/ DERIVDIR/ participant --participant-label SUBJECT \
+/Shared/vosslabhpc/UniversalSoftware/SingularityContainers/fmriprep-v23.2.0.sif \\
+/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/ /Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/fmriprep_v23.2.0/
+ participant --participant-label SUBJECT \
 --skip_bids_validation \
 --nprocs 8 --omp-nthreads 8 --mem 32000 \
 -t rest \
 -w work \
 --error-on-aroma-warnings -v \
 --ignore slicetiming \
---output-spaces MNI152NLin6Asym:res-2 MNI152NLin2009cAsym:res-native \
---bold2t1w-init register \
---bold2t1w-dof 12 --force-bbr \
+--output-spaces {T1w,MNI152NLin2009cAsym,fsaverage5}
 --slice-time-ref 0.5 \
 --dummy-scans 5 \
 --use-aroma \
@@ -43,9 +42,10 @@ INDIR/ DERIVDIR/ participant --participant-label SUBJECT \
 --skull-strip-template OASIS30ANTs \
 --skull-strip-fixed-seed \
 --skull-strip-t1w force \
---fs-license-file {{Directory of the license file in shared server}} \
 --cifti-output 91k \
 --output-layout bids \
+--fs-license-file /mnt/UniversalSoftware/freesurfer_license.txt \
+--fs-subjects-dir /mnt/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/freesurfer_7.1/
 --resource-monitor \
 --notrack \
 --stop-on-first-crash

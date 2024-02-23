@@ -46,29 +46,24 @@ done
 
 
   #Base output directory
-baseDir= /Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/
+baseDir= /Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS
 
   #logdir and raw NIfTI dir
-logDir=${baseDir}/logs/sub-${subject}
+logDir=${baseDir}/derviatives/code/fmriprep_v23.2.0/
 if [[ ! -d ${logDir} ]]; then
   mkdir ${logDir}
 fi
-inDir=${baseDir}/rawdata
+inDir=${baseDir}
 
   #Jobs directory
-jobDir=${baseDir}/jobs/sub-${subject}
+jobDir=${baseDir}/derivatives/code/fmriprep_v23.2.0/job_scripts/sub-${subject}
 if [[ ! -d ${jobDir} ]]; then
   mkdir ${jobDir}
 fi
 
-  #Check for NIfTI
-if [[ ! -d ${inDir}/sub-${subject} ]]; then
-  echo "Error: Data must have been run through heudiconv first!"
-  exit 1
-fi
 
   #Output Directory
-derivDir=${baseDir}/derivatives/fmriprep_v23.2.0
+derivDir=${baseDir}/derivatives
 
   #Determining User
 usr=`whoami`
