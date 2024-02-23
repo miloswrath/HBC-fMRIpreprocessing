@@ -9,15 +9,6 @@ OMP_NUM_THREADS=8
 
 
 
-#Set up dependencies
-singularityDir={directory of the singularity files}
-
-# directory of the template files on the server
-export TEMPLATEFLOW_HOME={Server directory of the templateflow files}
-
-# directory of the template files in the container
-export SINGULARITYENV_TEMPLATEFLOW_HOME=/templateflow
-
 ##########
 
 #Run fmriprep

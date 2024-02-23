@@ -13,7 +13,7 @@
 
 ##############################
 
-templateDir= /Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/fmriprep_v23.2.0/job_scripts/
+templateDir="/Shared/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/fmriprep_v23.2.0/job_scripts/"
 
 
 function printCommandLine {
@@ -46,24 +46,24 @@ done
 
 
   #Base output directory
-baseDir= /Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS
+baseDir= "/Shared/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS"
 
   #logdir and raw NIfTI dir
-logDir=${baseDir}/derviatives/code/fmriprep_v23.2.0/
+logDir="${baseDir}/derviatives/code/fmriprep_v23.2.0/"
 if [[ ! -d ${logDir} ]]; then
   mkdir ${logDir}
 fi
 inDir=${baseDir}
 
   #Jobs directory
-jobDir=${baseDir}/derivatives/code/fmriprep_v23.2.0/job_scripts/sub-${subject}
+jobDir="${baseDir}/derivatives/code/fmriprep_v23.2.0/job_scripts/sub-${subject}"
 if [[ ! -d ${jobDir} ]]; then
   mkdir ${jobDir}
 fi
 
 
   #Output Directory
-derivDir=${baseDir}/derivatives
+derivDir="${baseDir}/derivatives"
 
   #Determining User
 usr=`whoami`
@@ -72,7 +72,7 @@ usr=`whoami`
 
 #Populate the template (create a new job file), make executable
 sed -e "s|USER|${usr}|g" \
-    -e "s|SUBJECT|${subject}|g" \ > ${jobDir}/sub-${subject}_fmriprep.job
+    -e "s|SUBJECT|${subject}|g" templateDir/_fmriprepTemplate.job > ${jobDir}/sub-${subject}_fmriprep.job
 
 chmod +x ${jobDir}/sub-${subject}_fmriprep.job
 
