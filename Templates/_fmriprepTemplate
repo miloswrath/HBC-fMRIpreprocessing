@@ -23,8 +23,9 @@ export SINGULARITYENV_TEMPLATEFLOW_HOME=/templateflow
 #Run fmriprep
 singularity run --cleanenv \
 -B /Users/USER/work:/work \
-/Shared/vosslabhpc/UniversalSoftware/SingularityContainers/fmriprep-v23.2.0.sif \\
-/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/ /Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/fmriprep_v23.2.0/
+/Shared/vosslabhpc/UniversalSoftware/SingularityContainers/fmriprep-v23.2.0.sif \
+/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/ \
+/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/fmriprep_v23.2.0/ \
  participant --participant-label SUBJECT \
 --skip_bids_validation \
 --nprocs 8 --omp-nthreads 8 --mem 32000 \

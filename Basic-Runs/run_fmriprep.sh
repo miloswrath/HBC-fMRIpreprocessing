@@ -72,10 +72,7 @@ usr=`whoami`
 
 #Populate the template (create a new job file), make executable
 sed -e "s|USER|${usr}|g" \
-    -e "s|SUBJECT|${subject}|g" \
-    -e "s|INDIR|${inDir}|g" \
-    -e "s|DERIVDIR|${derivDir}|g" \
-    -e "s|LOGDIR|${logDir}|g" ${templateDir}/_fmriprepTemplate > ${jobDir}/sub-${subject}_fmriprep.job
+    -e "s|SUBJECT|${subject}|g" \ > ${jobDir}/sub-${subject}_fmriprep.job
 
 chmod +x ${jobDir}/sub-${subject}_fmriprep.job
 
