@@ -14,7 +14,14 @@
 
 ##############################
 
-templateDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/{path to XCP-D code}
+
+for sub in $(cat /Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/code/fmriprep_v23_pilot.txt); do
+echo ${sub}
+subname=$(basename ${sub} | sed "s/sub-//");
+echo $subname
+cd /Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/derivatives/code/xcp-d/job_scripts 
+
+templateDir="/Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/derivatives/code/xcp-d/job_scripts"
 
 
 function printCommandLine {
@@ -51,32 +58,19 @@ done
 
 
   #Base output directory
-baseDir=/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/code/
+baseDir="/Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS"
 
-  #logdir and raw NIfTI dir
-logDir=${baseDir}/logs/sub-${subject}
-if [[ ! -d ${logDir} ]]; then
-  mkdir ${logDir}
-fi
-derivDir=${baseDir}/derivatives
+  
+derivDir="${baseDir}/derivatives"
 
-  #Jobs directory
-jobDir=${baseDir}/jobs/sub-${subject}
-if [[ ! -d ${jobDir} ]]; then
-  mkdir ${jobDir}
-fi
 
-prepDir=${derivDir}/fmriprep
+prepDir=${derivDir}/fmriprep_v23.2.0
   #Check for fmriprep output
-if [[ ! -d ${prepDir}/sub-${subject} ]]; then
+if [[ ! -d ${prepDir}/sub-${subname} ]]; then
   echo "Error: Data must have been run through fmriprep first!"
   exit 1
 fi
 
-xcpDir=${derivDir}
-if [[ ! -d ${xcpDir} ]]; then
-  mkdir ${xcpDir}
-fi
 
   #Determining User
 usr=`whoami`
@@ -84,15 +78,12 @@ usr=`whoami`
 ##########
 
 #Populate the template (create a new job file), make executable
-sed -e "s|USER|${usr}|g" \
-    -e "s|SUBJECT|${subject}|g" \
-    -e "s|SESSION|${session}|g" \
-    -e "s|PREPDIR|${prepDir}|g" \
-    -e "s|XCPDIR|${xcpDir}|g" \
-    -e "s|LOGDIR|${logDir}|g" ${templateDir}/_xcpdTemplate > ${jobDir}/sub-${subject}_xcpd.job
+sed -e "s|SUBJECT|${subname}|g" xcpdTemplate.job > ${PWD}/sub-${subname}.job
 
-chmod +x ${jobDir}/sub-${subject}_xcpd.job
+
+chmod +x ${PWD}/sub-${subname}.job
 
 #Submit the job to Argon
-qsub ${jobDir}/sub-${subject}_xcpd.job
+qsub ${PWD}/sub-${subname}.job
 
+done

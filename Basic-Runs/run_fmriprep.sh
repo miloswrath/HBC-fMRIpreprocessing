@@ -19,6 +19,7 @@ templateDir="/Shared/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/der
 function printCommandLine {
   echo ""
   echo "Usage: run_fmriprep.sh -s subject"
+  
   echo ""
   echo "   where:"
   echo "   -s Subject ID"
