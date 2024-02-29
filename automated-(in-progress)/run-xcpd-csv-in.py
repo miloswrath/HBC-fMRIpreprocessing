@@ -7,7 +7,7 @@ import re
 def replace_placeholders(template, subject, session):
     # Here we will replace placeholders in the template string with actual values
     # For simplicity, only SUBJECT and SESSION are shown, but will expand with Bryan
-    return template.replace("SUBJECT", subject).replace("SESSION", session).replace(singularityDir)
+    return template.replace("SUBJECT", subject).replace("SESSION", session)
 
 # Read in the csv file
 df = pd.read_csv(sys.argv[1])
