@@ -1,44 +1,19 @@
 #!/bin/bash
-
-#$ -N sub-SUBJECT_fmriprep
-#$ -pe smp 10
-#$ -q PINC,CCOM,UI
+#$ -pe smp 56
+#$ -q UI
+#$ -m bea
+#$ -M bryan-madero@uiowa.edu
 #$ -j y
-#$ -o LOGDIR
-OMP_NUM_THREADS=8
-
-
-
-##########
-
-#Run fmriprep
-singularity run --cleanenv \
--B /Users/USER/work:/work \
-/Shared/vosslabhpc/UniversalSoftware/SingularityContainers/fmriprep-v23.2.0.sif \
-/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/ \
-/Volumes/vosslabhpc/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/fmriprep_v23.2.0/ \
- participant --participant-label SUBJECT \
---skip_bids_validation \
---nprocs 8 --omp-nthreads 8 --mem 32000 \
--t rest \
--w work \
---error-on-aroma-warnings -v \
---ignore slicetiming \
---output-spaces {T1w,MNI152NLin2009cAsym,fsaverage5}
---slice-time-ref 0.5 \
+#$ -o /Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/derivatives/code/xcp-d/out
+#$ -e /Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/derivatives/code/xcp-d/err
+OMP_NUM_THREADS=10
+singularity run --cleanenv -H ${HOME}/singularity_home -B /Shared/vosslabhpc:/mnt \
+/Shared/vosslabhpc/UniversalSoftware/SingularityContainers/xcp_d_v0.6.1.sif \
+/mnt/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/derivatives/fmriprep_v23.2.0 \
+/mnt/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/derivatives/xcp_d_v0.6.1 \
+participant --participant_label SUBJECT \
 --dummy-scans 5 \
---use-aroma \
---aroma-melodic-dimensionality -150 \
---fd-spike-threshold 0.5 \
---dvars-spike-threshold 1.5 \
---skull-strip-template OASIS30ANTs \
---skull-strip-fixed-seed \
---skull-strip-t1w force \
---cifti-output 91k \
---output-layout bids \
---fs-license-file /mnt/UniversalSoftware/freesurfer_license.txt \
---fs-subjects-dir /mnt/Projects/BETTER_IIB/3-Experiment/2-Data/BIDS/derivatives/freesurfer_7.1/
---resource-monitor \
---notrack \
---stop-on-first-crash
+-f 0.5 \
+--atlases 4S456Parcels
 
+# Path: 

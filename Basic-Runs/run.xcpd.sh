@@ -15,11 +15,11 @@
 ##############################
 
 
-for sub in $(cat /Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/code/fmriprep_v23_pilot.txt); do
+for sub in $(cat /Shared/vosslabhpc/Projects/BikeExtend/3-Experiment/2-Data/BIDS/code/fmriprep_v23_pilot.txt); do
 echo ${sub}
 subname=$(basename ${sub} | sed "s/sub-//");
 echo $subname
-cd /Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/derivatives/code/xcp-d/job_scripts 
+cd /Shared/vosslabhpc/Projects/BikeExtend/3-Experiment/2-Data/BIDS/derivatives/code/xcp-d/job_scripts 
 
 templateDir="/Shared/vosslabhpc/Projects/BETTER_B2/3-Experiment/2-Data/BIDS/derivatives/code/xcp-d/job_scripts"
 
